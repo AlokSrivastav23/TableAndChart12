@@ -1,0 +1,26 @@
+.App {
+  display: flex;
+  justify-content: center;
+  font-family: sans-serif;
+  text-align: center;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+  padding-left: 0px;
+  margin: 70px;
+  margin-top: 20px;
+}
+.button {
+  /* background-color: darkblue; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+.button button {
+  border: none;
+  outline: none;
+  /* border-bottom: 2px solid blue; */
+}
