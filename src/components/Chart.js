@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Line } from "react-chartjs-2";
 
 function Chart() {
@@ -14,12 +15,12 @@ function Chart() {
         borderDash: [],
         borderDashOffset: 0.0,
         borderJoinStyle: "miter",
-        pointBorderColor: "rgba(75,192,192,1)",
+        pointBorderColor: "blue",
         pointBackgroundColor: "#fff",
         pointBorderWidth: 1,
         pointHoverRadius: 4,
         pointHoverBackgroundColor: "rgba(75,192,192,1)",
-        pointHoverBorderColor: "rgba(220,220,220,1)",
+        pointHoverBorderColor: "blue",
         pointHoverBorderWidth: 9,
         pointRadius: 3,
         pointHitRadius: 5,
@@ -27,7 +28,59 @@ function Chart() {
       }
     ]
   };
+  const lineOptions = {
+    onClick: (e, element) => {
+      if (element.length > 0) {
+        var ind = element[0]._index;
+        alert(ind);
+      }
+    },
+    scales: {
+      xAxes: [
+        {
+          gridLines: {
+            display: false
+          }
+        }
+      ],
+      yAxes: [
+        {
+          gridLines: {
+            display: false
+          },
+          ticks: {
+            beginAtZero: true,
+            userCallback(value) {
+              value = value.toString();
+              value = value.split(/(?=(?:...)*$)/);
+              value = value.join("");
 
-  return <Line data={data} />;
+              return `${value}`;
+            }
+          }
+        }
+      ]
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      enabled: false
+    }
+  };
+  return (
+    <>
+      <div className="Chart">
+        <div className="aa">
+          <span>Medals Wons</span>
+        </div>
+        <div>
+          <Line data={data} options={lineOptions} />
+        </div>
+      </div>
+
+      <span className="sp">Years</span>
+    </>
+  );
 }
 export default Chart;
